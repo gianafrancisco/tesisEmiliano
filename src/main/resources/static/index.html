@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+  <script src="bower_components/jquery/dist/jquery.min.js" ></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+  <style type="text/css">
+
+    html, body { height: 100%; margin: 0; padding: 0; }
+    #map { height: 100%; }
+
+    .labelSize {
+      width: 90px;
+    }
+
+    .tablaHistorico {
+      width: 100%;
+    }
+
+    .navBar {
+      height: 80px;
+    }
+
+    .subHeight {
+      height: 250px;
+    }
+
+    .subMapa {
+      padding: 2px;
+      margin: 0px;
+    }
+
+  </style>
+  </head>
+  <body ng-app="mainApp" ng-controller="MainController">
+
+  <nav class="navbar navbar-default navBar">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          <img alt="Logo1" src="images/logo1.png">
+        </a>
+      </div>
+      <div class="navbar-center" style="margin-left: 45%">
+        <a class="navbar-brand" href="#">
+          <img alt="Logo2" src="images/logo2.png">
+        </a>
+      </div>
+      <div class="navbar-right">
+        <a class="navbar-brand" href="#">
+          <img alt="Logo3" src="images/logo3.png">
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+
+  <div class="row">
+
+  <div class="panel panel-default col-md-4">
+    <div class="panel-heading">Configuracion</div>
+    <div class="panel-body subHeight">
+      <div class="input-group">
+        <span class="input-group-addon labelSize" id="basic-addon1">Puerto</span>
+        <select class="form-control">
+          <option value="COM1">COM1</option>
+          <option value="COM2">COM2</option>
+          <option value="COM3">COM3</option>
+          <option value="COM4">COM4</option>
+        </select>
+
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon labelSize" id="basic-addon1">Velocidad</span>
+        <select class="form-control">
+          <option value="4800">4800</option>
+          <option value="9600" selected>9600</option>
+          <option value="14400">14400</option>
+          <option value="19200">19200</option>
+        </select>
+      </div>
+      <p></p>
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-default">Conectar</button>
+        <button type="button" class="btn btn-default">Desconectar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default col-md-4">
+    <div class="panel-heading">Datos Usuario</div>
+    <div class="panel-body subHeight" >
+      <div class="input-group">
+        <span class="input-group-addon labelSize" id="basic-addon1">DNI</span>
+        <input type="text" class="form-control" ng-change="buscar();" ng-model="dni">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon labelSize" id="basic-addon1">Patente</span>
+        <input type="text" class="form-control" ng-model="usuario.patente">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon labelSize" id="basic-addon1">Nombre</span>
+        <input type="text" class="form-control" ng-model="usuario.nombre">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon labelSize" id="basic-addon1">Apellido</span>
+        <input type="text" class="form-control" ng-model="usuario.apellido">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon labelSize" id="basic-addon1">Empresa</span>
+        <input type="text" class="form-control" ng-model="usuario.empresa">
+      </div>
+      <p></p>
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-default">Agregar</button>
+        <button type="button" class="btn btn-default">Eliminar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default col-md-4">
+    <div class="panel-heading">Mapa</div>
+    <div class="panel-body subMapa subHeight">
+      <div id="map" ></div>
+    </div>
+  </div>
+
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Historico de descargas</div>
+    <div class="panel-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Conductor</th>
+            <th>Remito</th>
+            <th>Tambo</th>
+            <th>Sisterna</th>
+            <th>Antibiotico</th>
+            <th>Litros</th>
+            <th>Temperatura</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="row in historicoUsuario">
+            <td>{{row.fecha}}</td>
+            <td>{{row.conductor}}</td>
+            <td>{{row.remito}}</td>
+            <td>{{row.tambo}}</td>
+            <td>{{row.sisterna}}</td>
+            <td>{{row.antibiotico}}</td>
+            <td>{{row.litros}}</td>
+            <td>{{row.temperatura}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  </div>
+
+  
+    
+    <script type="text/javascript">
+
+    var map;
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: -31.4190771, lng: -64.1881142},
+        zoom: 8
+      });
+    }
+    </script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoia2XlS7axRgo7Ls4-bgaAgGuOPw4Hno&callback=initMap">
+    </script>
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="app/main.js"></script>
+
+  </body>
+</html>
