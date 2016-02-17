@@ -2,14 +2,14 @@
 <html>
   <head>
     <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" >
 
   <!-- Optional theme -->
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" >
 
   <script src="bower_components/jquery/dist/jquery.min.js" ></script>
   <!-- Latest compiled and minified JavaScript -->
-  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
   <style type="text/css">
 
@@ -175,7 +175,7 @@
           </thead>
           <tbody>
             <tr ng-repeat="row in historicoUsuario">
-              <td>{{row.fecha}}</td>
+              <td>{{row.fecha.epochSecond*1000 | date:'yyyy-MM-dd HH:mm:ss' }}</td>
               <td>{{row.conductor}}</td>
               <td>{{row.remito}}</td>
               <td>{{row.tambo}}</td>
