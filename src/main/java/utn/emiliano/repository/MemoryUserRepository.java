@@ -11,11 +11,10 @@ public class MemoryUserRepository implements UserRepository {
     private List<User> userList = new ArrayList<User>();
 
     public MemoryUserRepository() {
-        userList.add(new User(49013L,"HAO129","Emanuel","Prado","Sancor"));
-        userList.add(new User(49133L,"HAO130","Gabriel","Zampa","Sancor"));
-        userList.add(new User(46441L,"HAO131","Emiliano","Grande","Sancor"));
-        userList.add(new User(46441L,"HAO129","Emanuel","Prado","Sancor"));
-        userList.add(new User(48659L,"48659","Pablo","Bongiovanni","Sancor"));
+        userList.add(new User(32317260L,"HAO129","Emanuel","Prado","Sancor"));
+        userList.add(new User(31669160L,"HAO130","Gabriel","Zampa","Sancor"));
+        userList.add(new User(29843624L,"HAO131","Emiliano","Grande","Sancor"));
+        userList.add(new User(31623864L,"HAO132","Pablo","Bongiovanni","Sancor"));
     }
 
     public List<User> findAll() {

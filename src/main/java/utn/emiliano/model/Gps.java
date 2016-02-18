@@ -22,7 +22,9 @@ public class Gps {
         return gps;
     }
 
+    /*
     public String getMarker() {
         return marker;
     }
+    */
 }

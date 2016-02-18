@@ -18,11 +18,11 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserRepository memoryUserRepository;
+    private UserRepository userRepository;
 
     @RequestMapping(value = "/user",method = RequestMethod.GET)
     public List<User> user(){
-        return memoryUserRepository.findAll();
+        return userRepository.findAll();
     }
 
 }
