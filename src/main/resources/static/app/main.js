@@ -89,6 +89,13 @@ function mainController($scope, $http, $window, $location) {
       }
     };
 
+     $scope.serial = function (){
+        $http.get("/serial").success(function(data){
+                  $scope.historicoUsuario = data;
+        });
+     }
+
+
      $scope.init = function(){
         $http.get("/user").success(function(data){
             $scope.usuarios = data;
@@ -99,6 +106,9 @@ function mainController($scope, $http, $window, $location) {
         $http.get("/gps").success(function(data){
              $scope.gpsPosition = data;
         });
+
+        setInterval(function(){$scope.serial();},5000);
+
         $scope.map = map;
      };
      $scope.init();

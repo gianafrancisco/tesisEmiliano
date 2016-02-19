@@ -11,21 +11,25 @@ public class Ticket {
     private String conductor;
     private String remito;
     private String tambo;
-    private int sisterna;
+    private int cisterna;
     private String antibiotico;
     private double litros;
     private double temperatura;
 
-    public Ticket(long dni, Instant fecha, String conductor, String remito, String tambo, int sisterna, String antibiotico, double litros, double temperatura) {
+    public Ticket(long dni, Instant fecha, String conductor, String remito, String tambo, int cisterna, String antibiotico, double litros, double temperatura) {
         this.dni = dni;
         this.fecha = fecha;
         this.conductor = conductor;
         this.remito = remito;
         this.tambo = tambo;
-        this.sisterna = sisterna;
+        this.cisterna = cisterna;
         this.antibiotico = antibiotico;
         this.litros = litros;
         this.temperatura = temperatura;
+    }
+
+    public Ticket() {
+        this.fecha = Instant.now();
     }
 
     public String getAntibiotico() {
@@ -52,8 +56,8 @@ public class Ticket {
         return tambo;
     }
 
-    public int getSisterna() {
-        return sisterna;
+    public int getCisterna() {
+        return cisterna;
     }
 
     public double getLitros() {
@@ -62,5 +66,41 @@ public class Ticket {
 
     public double getTemperatura() {
         return temperatura;
+    }
+
+    public void setDni(long dni) {
+        this.dni = dni;
+    }
+
+    public void setFecha(Instant fecha) {
+        this.fecha = fecha;
+    }
+
+    public void setConductor(String conductor) {
+        this.conductor = conductor;
+    }
+
+    public void setRemito(String remito) {
+        this.remito = remito;
+    }
+
+    public void setTambo(String tambo) {
+        this.tambo = tambo;
+    }
+
+    public void setCisterna(int cisterna) {
+        this.cisterna = cisterna;
+    }
+
+    public void setAntibiotico(String antibiotico) {
+        this.antibiotico = antibiotico;
+    }
+
+    public void setLitros(double litros) {
+        this.litros = litros;
+    }
+
+    public void setTemperatura(double temperatura) {
+        this.temperatura = temperatura;
     }
 }
