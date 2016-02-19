@@ -74,35 +74,41 @@ TEMPERATURA= 21
 
         @Override
         public void accept(String s) {
-            if(ticket != null){
-                if(s.contains("*****")){
-                    ticketList.add(ticket);
-                    ticket = new Ticket();
-                }else if(s.contains("CHOFER:")){
-                    ticket.setConductor(s.split(":")[1].trim());
-                }else if(s.contains("REMITO:")){
-                    ticket.setRemito(s.split(":")[1].trim());
-                }else if(s.contains("TAMBO:")){
-                    ticket.setTambo(s.split(":")[1].trim());
-                }else if(s.contains("SISTERNA:")){
-                    ticket.setCisterna(Integer.valueOf(s.split(":")[1].trim()));
-                }else if(s.contains("CISTERNA:")){
-                    ticket.setCisterna(Integer.valueOf(s.split(":")[1].trim()));
-                }else if(s.contains("ANTIBIOTICO:")){
-                    ticket.setAntibiotico(s.split(":")[1].trim());
-                }else if(s.contains("TEMPERATURA:")){
-                    ticket.setTemperatura(Double.valueOf(s.split(":")[1].trim()));
-                }else if(s.contains("TEMPERATURA=")){
-                    ticket.setTemperatura(Double.valueOf(s.split("=")[1].trim()));
-                }else if(s.contains("CAUDAL:")){
-                    ticket.setLitros(Double.valueOf(s.split(":")[1].replace("L","").trim()));
-                }else if(s.contains("VOLUMEN:")){
-                    ticket.setLitros(Double.valueOf(s.split(":")[1].replace("L","").trim()));
+
+            try {
+                if (ticket != null) {
+                    s = s.replace("null","");
+                    if (s.contains("*****")) {
+                        ticketList.add(ticket);
+                        ticket = new Ticket();
+                    } else if (s.contains("CHOFER:")) {
+                        ticket.setConductor(s.split(":")[1].trim());
+                    } else if (s.contains("REMITO:")) {
+                        ticket.setRemito(s.split(":")[1].trim());
+                    } else if (s.contains("TAMBO:")) {
+                        ticket.setTambo(s.split(":")[1].trim());
+                    } else if (s.contains("SISTERNA:")) {
+                        ticket.setCisterna(Integer.valueOf(s.split(":")[1].trim()));
+                    } else if (s.contains("CISTERNA:")) {
+                        ticket.setCisterna(Integer.valueOf(s.split(":")[1].trim()));
+                    } else if (s.contains("ANTIBIOTICO:")) {
+                        ticket.setAntibiotico(s.split(":")[1].trim());
+                    } else if (s.contains("TEMPERATURA:")) {
+                        ticket.setTemperatura(Double.valueOf(s.split(":")[1].trim()));
+                    } else if (s.contains("TEMPERATURA=")) {
+                        ticket.setTemperatura(Double.valueOf(s.split("=")[1].trim()));
+                    } else if (s.contains("CAUDAL:")) {
+                        ticket.setLitros(Double.valueOf(s.split(":")[1].replace("L", "").trim()));
+                    } else if (s.contains("VOLUMEN:")) {
+                        ticket.setLitros(Double.valueOf(s.split(":")[1].replace("L", "").trim()));
+                    }
+                } else {
+                    if (s.contains("*****")) {
+                        ticket = new Ticket();
+                    }
                 }
-            }else{
-                if(s.contains("*****")){
-                    ticket = new Ticket();
-                }
+            }catch (NumberFormatException ex){
+                System.out.println(ex.getMessage());
             }
         }
 
