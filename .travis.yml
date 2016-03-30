@@ -11,8 +11,8 @@ install:
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 
 after_success:
-  - docker build -t fgiana/tesisEmiliano .
-  - docker run -name tesis -d fgiana/tesisEmiliano
+  - docker build -t fgiana/tesis_emiliano .
+  - docker run -name tesis -d fgiana/tesis_emiliano
   - docker ps
   - docker port tesis
 
