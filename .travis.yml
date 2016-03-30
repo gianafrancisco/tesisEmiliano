@@ -10,9 +10,13 @@ services:
 install:
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 
+before_install:
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+
 after_success:
   - docker build -t fgiana/tesis_emiliano .
-  - docker run --name tesis -d fgiana/tesis_emiliano
+  - docker run --name tesis -d -P fgiana/tesis_emiliano
   - docker ps
   - docker port tesis
+  - docker push fgiana/tesis_emiliano
 
