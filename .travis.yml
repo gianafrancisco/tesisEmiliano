@@ -7,14 +7,10 @@ jdk:
 
 services:
   - docker
+install:
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 
-#env:
-#  DOCKER_COMPOSE_VERSION: 1.4.2
-#  DOCKER_EMAIL: gianafrancisco@gmail.com
-#  DOCKER_USERNAME: fgiana
-#  DOCKER_PASSWORD: ********
-
-after_install:
+after_success:
   - docker build -t fgiana/tesisEmiliano .
   - docker run -name tesis -d fgiana/tesisEmiliano
   - docker ps
