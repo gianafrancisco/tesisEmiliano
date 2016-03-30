@@ -1,17 +1,18 @@
 sudo: required
 
-services:
-  - docker
-
 language: java
+
 jdk:
   - oraclejdk8
 
-env:
-  DOCKER_COMPOSE_VERSION: 1.4.2
-  DOCKER_EMAIL: gianafrancisco@gmail.com
-  DOCKER_USERNAME: fgiana
-  DOCKER_PASSWORD: ********
+services:
+  - docker
+
+#env:
+#  DOCKER_COMPOSE_VERSION: 1.4.2
+#  DOCKER_EMAIL: gianafrancisco@gmail.com
+#  DOCKER_USERNAME: fgiana
+#  DOCKER_PASSWORD: ********
 
 after_install:
   - docker build -t fgiana/tesisEmiliano .
